@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "731620162946",
+    "project_id": "authentication-52bfb",
+    "storage_bucket": "authentication-52bfb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731620162946:android:1add7b3191ddd59166239b",
+        "android_client_info": {
+          "package_name": "com.aleinikau.ecommers_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "731620162946-pq0epji8er366pqia0peql93epqvcvmn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAelPemBe6bISL5Zc9aabOgOAH_atkLabI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "731620162946-pq0epji8er366pqia0peql93epqvcvmn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "731620162946-aajjk7ha9d2gbat5phans6v6p74sgfeg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.aleinikau.shop"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
