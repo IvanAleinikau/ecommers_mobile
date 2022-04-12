@@ -442,12 +442,30 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (2.0.0)
+  - Stripe (21.12.0):
+    - Stripe/Stripe3DS2 (= 21.12.0)
+    - StripeApplePay (= 21.12.0)
+    - StripeCore (= 21.12.0)
+    - StripeUICore (= 21.12.0)
+  - Stripe/Stripe3DS2 (21.12.0):
+    - StripeApplePay (= 21.12.0)
+    - StripeCore (= 21.12.0)
+    - StripeUICore (= 21.12.0)
+  - stripe_ios (0.0.1):
+    - Flutter
+    - Stripe (~> 21.12.0)
+  - StripeApplePay (21.12.0):
+    - StripeCore (= 21.12.0)
+  - StripeCore (21.12.0)
+  - StripeUICore (21.12.0):
+    - StripeCore (= 21.12.0)
 
 DEPENDENCIES:
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - Flutter (from `Flutter`)
+  - stripe_ios (from `.symlinks/plugins/stripe_ios/ios`)
 
 SPEC REPOS:
   trunk:
@@ -466,6 +484,10 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
+    - Stripe
+    - StripeApplePay
+    - StripeCore
+    - StripeUICore
 
 EXTERNAL SOURCES:
   cloud_firestore:
@@ -476,6 +498,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_core/ios"
   Flutter:
     :path: Flutter
+  stripe_ios:
+    :path: ".symlinks/plugins/stripe_ios/ios"
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -497,6 +521,11 @@ SPEC CHECKSUMS:
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
+  Stripe: c3692f360abcdfeef9751e3c240e7efbc68b921f
+  stripe_ios: bfa5113de686073731d1ebbaecc0e863a2e110b7
+  StripeApplePay: 14db90fdf89abb2809ce41fc68bc6b1a86221408
+  StripeCore: 5e38cdea3dc176a32d8797ef312fe1ab41571272
+  StripeUICore: c28e371b385f968388ae38bedb93a2723c078442
 
 PODFILE CHECKSUM: 4e8f8b2be68aeea4c0d5beb6ff1e79fface1d048
 
