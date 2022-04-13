@@ -1,4 +1,16 @@
+import 'package:ecommers_mobile/app/message/message.dart';
+import 'package:ecommers_mobile/app/theme/text_style.dart';
+import 'package:ecommers_mobile/app/widgets/auth_widgets/auth_input.dart';
+import 'package:ecommers_mobile/app/widgets/auth_widgets/auth_navigator.dart';
+import 'package:ecommers_mobile/app/widgets/auth_widgets/auth_space.dart';
+import 'package:ecommers_mobile/app/widgets/auth_widgets/auth_subtitle.dart';
+import 'package:ecommers_mobile/app/widgets/auth_widgets/auth_title.dart';
+import 'package:ecommers_mobile/app/widgets/auth_widgets/google_button.dart';
+import 'package:ecommers_mobile/app/widgets/auth_widgets/sign_in_button.dart';
 import 'package:ecommers_mobile/core/blocs/login_bloc/login_cubit.dart';
+import 'package:ecommers_mobile/core/blocs/login_bloc/login_state.dart';
+import 'package:ecommers_mobile/core/router/router.gr.dart';
+import 'package:ecommers_mobile/core/utils/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,108 +45,101 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
-        child: Text('LOgin'),
+        child: BlocConsumer<LoginCubit, LoginState>(
+          bloc: _cubit,
+          listener: (context, state) {
+            state.maybeWhen(
+              successfully: () => context.router.replace(const MainRoute()),
+              loading: () => _isLoading.value = true,
+              error: (String message) {
+                _isLoading.value = false;
+                showErrorAuthMessage(message: message, context: context);
+              },
+              orElse: () => _isLoading.value = false,
+            );
+          },
+          builder: (context, state) {
+            return ValueListenableBuilder(
+              valueListenable: _isLoading,
+              builder: (context, bool isLoading, child) {
+                return isLoading ? const CircularProgressIndicator() : _buildBody(context);
+              },
+            );
+          },
+        ),
       ),
     );
-    // return Scaffold(
-    //   body: BlocConsumer<LoginCubit, LoginState>(
-    //     bloc: _cubit,
-    //     listener: (BuildContext context, state) {
-    //       state.maybeWhen(
-    //         successfully: () => context.router.replace(const MainRoute()),
-    //         loading: () => _isLoading.value = true,
-    //         error: (String message) {
-    //           _isLoading.value = false;
-    //           showErrorAuthMessage(message: message, context: context);
-    //         },
-    //         orElse: () {},
-    //       );
-    //     },
-    //     builder: (BuildContext context, state) {
-    //       return Column(
-    //         children: [
-    //           ValueListenableBuilder(
-    //             valueListenable: _isLoading,
-    //             builder: (context, bool isLoading, child) {
-    //               return isLoading ? const LinearProgressIndicator() : const EmptyWidget();
-    //             },
-    //           ),
-    //           Expanded(
-    //             child: Container(
-    //               decoration: const BoxDecoration(color: ColorPalette.authBackground),
-    //               padding: const EdgeInsets.symmetric(vertical: 100, horizontal: 200),
-    //               child: Row(
-    //                 children: [
-    //                   const Expanded(
-    //                     flex: 1,
-    //                     child: AuthImage(),
-    //                   ),
-    //                   Expanded(
-    //                     flex: 1,
-    //                     child: Form(
-    //                       key: _formKey,
-    //                       child: AuthSpace(
-    //                         widgets: [
-    //                           const AuthTitle(
-    //                             title: 'Vinyl Collection',
-    //                             padding: EdgeInsets.fromLTRB(0, 30, 0, 10),
-    //                             style: Style.authTitle,
-    //                           ),
-    //                           const AuthSubtitle(
-    //                             subtitle: 'Добро пожаловать в Vinyl Collection',
-    //                             padding: EdgeInsets.only(bottom: 7),
-    //                             style: Style.authSubtitle,
-    //                           ),
-    //                           AuthInput(
-    //                             hintText: 'Введите почту',
-    //                             labelText: 'Почта',
-    //                             padding: const EdgeInsets.fromLTRB(150, 30, 150, 0),
-    //                             controller: _email,
-    //                             validator: (value) => Validator.validateEmail(value!),
-    //                             obscureText: false,
-    //                           ),
-    //                           AuthInput(
-    //                             hintText: 'Введите пароль',
-    //                             labelText: 'Пароль',
-    //                             padding: const EdgeInsets.fromLTRB(150, 25, 150, 0),
-    //                             controller: _password,
-    //                             validator: (value) => Validator.validateNotNull(value!),
-    //                             obscureText: true,
-    //                           ),
-    //                           SignInButton(
-    //                             text: 'Войти',
-    //                             onPressed: () {
-    //                               if (_formKey.currentState!.validate()) {
-    //                                 _cubit.onSingIn(email: _email.text, password: _password.text);
-    //                               }
-    //                             },
-    //                             padding: const EdgeInsets.fromLTRB(20, 30, 20, 25),
-    //                           ),
-    //                           const ButtonSeparator(),
-    //                           GoogleButton(
-    //                             padding: const EdgeInsets.fromLTRB(30, 15, 0, 15),
-    //                             onPressed: () => _cubit.onSingInWithGoogle(),
-    //                             text: 'Sing in with Google',
-    //                           ),
-    //                           AuthNavigator(
-    //                             text: 'Ещё не зарегистрированы?',
-    //                             buttonText: 'Создать аккаунт',
-    //                             onPressed: () => context.router.navigate(const RegisterRoute()),
-    //                           ),
-    //                         ],
-    //                       ),
-    //                     ),
-    //                   ),
-    //                 ],
-    //               ),
-    //             ),
-    //           ),
-    //         ],
-    //       );
-    //     },
-    //   ),
-    // );
+  }
+
+  Widget _buildBody(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(height: 80),
+          const AuthTitle(
+            title: 'Vinyl Collection',
+            padding: EdgeInsets.zero,
+            style: Style.authTitle,
+          ),
+          const SizedBox(height: 10),
+          const AuthSubtitle(
+            subtitle: 'Добро пожаловать в Vinyl Collection',
+            padding: EdgeInsets.zero,
+            style: Style.authSubtitle,
+          ),
+          const SizedBox(height: 40),
+          Form(
+            key: _formKey,
+            child: AuthSpace(
+              widgets: [
+                AuthInput(
+                  hintText: 'Введите почту',
+                  labelText: 'Почта',
+                  padding: const EdgeInsets.symmetric(horizontal: 70),
+                  controller: _email,
+                  validator: (value) => Validator.validateEmail(value!),
+                  obscureText: false,
+                ),
+                const SizedBox(height: 10),
+                AuthInput(
+                  hintText: 'Введите пароль',
+                  labelText: 'Пароль',
+                  padding: const EdgeInsets.symmetric(horizontal: 70),
+                  controller: _password,
+                  validator: (value) => Validator.validateNotNull(value!),
+                  obscureText: true,
+                ),
+                const SizedBox(height: 40),
+                SignInButton(
+                  text: 'Войти',
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      _cubit.onSingIn(email: _email.text, password: _password.text);
+                    }
+                  },
+                  padding: EdgeInsets.zero,
+                ),
+                const SizedBox(height: 10),
+                GoogleButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: () {}, //_cubit.onSingInWithGoogle(),
+                  text: 'Sing in with Google',
+                ),
+                const SizedBox(height: 40),
+                AuthNavigator(
+                  text: 'Ещё не зарегистрированы?',
+                  buttonText: 'Создать аккаунт',
+                  onPressed: () => context.router.navigate(const RegisterRoute()),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

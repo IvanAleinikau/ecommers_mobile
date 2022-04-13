@@ -43,7 +43,7 @@ dependencies:
   auto_route: ^3.2.0
   get_it: ^7.2.0
   animations: ^2.0.2
-  #google_sign_in_web: ^0.10.0+5//TODO for mobile
+  google_sign_in: ^5.3.0
   flutter_stripe: ^2.4.0
   syncfusion_flutter_charts: ^20.1.47+1
 

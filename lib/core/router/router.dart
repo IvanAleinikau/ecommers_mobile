@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:ecommers_mobile/app/pages/login_page.dart';
+import 'package:ecommers_mobile/app/pages/main_page.dart';
+import 'package:ecommers_mobile/app/pages/register_page.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
@@ -20,21 +22,21 @@ import 'package:ecommers_mobile/app/pages/login_page.dart';
     //   page: AboutUsPage,
     //   name: 'AboutUsRoute',
     // ),
-    // AutoRoute(
-    //   path: '/register',
-    //   page: RegisterPage,
-    //   name: 'RegisterRoute',
-    // ),
+    AutoRoute(
+      path: '/register',
+      page: RegisterPage,
+      name: 'RegisterRoute',
+    ),
     // AutoRoute(
     //   path: '/admin',
     //   page: AdminPanelPage,
     //   name: 'AdminPanelRoute',
     // ),
-    // AutoRoute(
-    //   path: '/home',
-    //   page: MainPage,
-    //   name: 'MainRoute',
-    // ),
+    AutoRoute(
+      path: '/home',
+      page: MainPage,
+      name: 'MainRoute',
+    ),
     // AutoRoute(
     //   path: '/vinyl',
     //   page: VinylPage,
