@@ -1,4 +1,10 @@
+import 'package:ecommers_mobile/app/pages/accessories/accessories_page.dart';
+import 'package:ecommers_mobile/app/pages/acoustics/acoustics_page.dart';
+import 'package:ecommers_mobile/app/pages/vinyl/vinyl_page.dart';
+import 'package:ecommers_mobile/app/theme/color_palette.dart';
+import 'package:ecommers_mobile/app/theme/text_style.dart';
 import 'package:ecommers_mobile/app/widgets/app_drawer.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -9,112 +15,64 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  int _selectedIndex = 0;
+
+  static const List<Widget> _widgetOptions = <Widget>[
+    VinylPage(),
+    AcousticsPage(),
+    AccessoriesPage(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  String _getTitle() {
+    if (_selectedIndex == 0) {
+      return 'Винил';
+    } else if (_selectedIndex == 1) {
+      return 'Акустика';
+    } else {
+      return 'Аксессуары';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const AppDrawer(),
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(),
-          // const MyAppBar(
-          //   page: Pages.main,
-          // ),
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                Row(
-                  children: const [
-                    Center(
-                      child: Text(
-                        '1',
-                        style: TextStyle(color: Colors.red),
-                      ),
-                    )
-                  ],
-                )
-                // Row(
-                //   children: [
-                //     GestureContainer(
-                //       image: 'asset/image/vinyl_storage.jpg',
-                //       name: 'Виниловые пластинки',
-                //       onTap: () => context.router.navigate(const VinylRoute()),
-                //     ),
-                //     GestureContainer(
-                //       image: 'asset/image/akystic.jpg',
-                //       name: 'Акустика',
-                //       onTap: () => context.router.navigate(const AcousticsRoute()),
-                //     ),
-                //     GestureContainer(
-                //       image: 'asset/image/yhod.jpg',
-                //       name: 'Аксессуары и уход за винилом',
-                //       onTap: () => context.router.navigate(const AccessoriesRoute()),
-                //     ),
-                //   ],
-                // ),
-                // Row(
-                //   children: [
-                //     GestureContainer(
-                //       image: 'asset/image/proig.jpg',
-                //       name: 'Проигрыватели винила',
-                //       onTap: () => context.router.navigate(const AcousticsRoute()),
-                //     ),
-                //     GestureContainer(
-                //       image: 'asset/image/oboryd.jpg',
-                //       name: 'Оборудование',
-                //       onTap: () => context.router.navigate(const AcousticsRoute()),
-                //     ),
-                //     GestureContainer(
-                //       image: 'asset/image/naysh.jpg',
-                //       name: 'Наушники',
-                //       onTap: () => context.router.navigate(const AccessoriesRoute()),
-                //     ),
-                //   ],
-                // ),
-                // const AboutUs(),
-                // const SectionName(
-                //   name: 'Каталог',
-                //   style: Style.catalog,
-                // ),
-                // CatalogElement(
-                //   image: 'asset/image/proig3.jpg',
-                //   title: 'Проигрыватели винила',
-                //   subtitle:
-                //       'В проигрывателях винила мы ценим звук и стиль. Мы уверены что виниловый проигрыватель это отдельная часть интерьера, а не просто плеер. Откройте для себя новое увлечение или подарите вторую жизнь старой коллекции винила. Выбирайте из палитры цветов и форм на ваш вкус.',
-                //   color: Colors.lime.shade50,
-                //   onTap: () => context.router.navigate(const AcousticsRoute()),
-                // ),
-                // CatalogElement(
-                //   image: 'asset/image/vinyl_storage.jpg',
-                //   title: 'Виниловые пластинки',
-                //   subtitle:
-                //       'Новые оригинальные пластинки по приятным ценам. Наша цель - удовольствие клиентов, поэтому мы продаем не просто музыку, а музыкальное удовольствие. С радостью поможем найти вам редкий винил!',
-                //   color: Colors.amber.shade300,
-                //   onTap: () => context.router.navigate(const VinylRoute()),
-                // ),
-                // CatalogElement(
-                //   image: 'asset/image/portav.jpg',
-                //   title: 'Портативная акустика',
-                //   subtitle:
-                //       'Широкий выбор акустики от Vinyl Collection. Выбирайте Bluetooth колонку для своего проигрывателя и получайте в два раза больше виниловой мощности!',
-                //   color: Colors.red.shade50,
-                //   onTap: () => context.router.navigate(const AcousticsRoute()),
-                // ),
-                // CatalogElement(
-                //   image: 'asset/image/yhod2.jpg',
-                //   title: 'Аксессуары и уход',
-                //   subtitle:
-                //       'Виниловый проигрыватель требует не меньше внимания чем любой музыкальный инструмент. В Vinyl Collection вы найдете сменные иглы и новые картриджи для вашего аналогового любимца. А также антистатические щетки и моющие средства для ухода за пластинками.',
-                //   color: Colors.white70,
-                //   onTap: () => context.router.navigate(const AccessoriesRoute()),
-                // ),
-                // const Consultation(),
-                // Brands(),
-                // const AppBottomBar(),
-              ],
-            ),
+      backgroundColor: ColorPalette.authBackground,
+      appBar: AppBar(
+        title: Text(
+          _getTitle(),
+          style: Style.montserrat20w400,
+        ),
+        backgroundColor: const Color(0xFF7D4848),
+      ),
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.album_sharp),
+            label: 'Винил',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.double_music_note),
+            label: 'Акустика',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.headphones),
+            label: 'Аксессуары',
           ),
         ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: const Color(0xFF7D4848),
+        onTap: _onItemTapped,
       ),
+      drawer: const AppDrawer(),
     );
   }
 }

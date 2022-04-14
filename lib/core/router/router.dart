@@ -1,7 +1,10 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:ecommers_mobile/app/pages/accessories/widgets/accessories_details.dart';
+import 'package:ecommers_mobile/app/pages/acoustics/widgets/acoustics_detailed.dart';
 import 'package:ecommers_mobile/app/pages/login_page.dart';
 import 'package:ecommers_mobile/app/pages/main_page.dart';
 import 'package:ecommers_mobile/app/pages/register_page.dart';
+import 'package:ecommers_mobile/app/pages/vinyl/widgets/vinyl_detailed.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
@@ -57,21 +60,21 @@ import 'package:ecommers_mobile/app/pages/register_page.dart';
     //   page: NewsPage,
     //   name: 'NewsRoute',
     // ),
-    // AutoRoute(
-    //   path: '/vinyl_details',
-    //   page: VinylDetailed,
-    //   name: 'VinylDetailedRoute',
-    // ),
-    // AutoRoute(
-    //   path: '/acoustics_details',
-    //   page: AcousticsDetailed,
-    //   name: 'AcousticsDetailedRoute',
-    // ),
-    // AutoRoute(
-    //   path: '/accessories_details',
-    //   page: AccessoriesDetailed,
-    //   name: 'AccessoriesDetailedRoute',
-    // ),
+    AutoRoute(
+      path: '/vinyl_details',
+      page: VinylDetailed,
+      name: 'VinylDetailedRoute',
+    ),
+    AutoRoute(
+      path: '/acoustics_details',
+      page: AcousticsDetailed,
+      name: 'AcousticsDetailedRoute',
+    ),
+    AutoRoute(
+      path: '/accessories_details',
+      page: AccessoriesDetailed,
+      name: 'AccessoriesDetailedRoute',
+    ),
     // AutoRoute(
     //   path: '/news_details',
     //   page: NewsDetailed,

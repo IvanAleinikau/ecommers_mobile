@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
+import '.env.dart';
 import 'core/blocs/acoustics_bloc/acoustics_cubit.dart';
 import 'core/blocs/consultation_bloc/consultation_bloc.dart';
 import 'core/blocs/news_bloc/news_cubit.dart';
@@ -14,8 +16,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   SetupGetIt.setup();
-  //TODO setup stripe
-  //Stripe.publishableKey = stripePublishableKey;
+  Stripe.publishableKey = stripePublishableKey;
   runApp(Ecommers());
 }
 
