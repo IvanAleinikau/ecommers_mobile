@@ -4,7 +4,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 class MyBackButton extends StatelessWidget {
-  const MyBackButton({Key? key}) : super(key: key);
+  final bool isBack;
+
+  const MyBackButton({Key? key})
+      : isBack = false,
+        super(key: key);
+
+  const MyBackButton.back({Key? key})
+      : isBack = true,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,16 +22,16 @@ class MyBackButton extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(3),
         child: Row(
-          children: const [
-            Icon(
+          children: [
+            const Icon(
               CupertinoIcons.arrow_left,
               size: 16,
             ),
-            SizedBox(
+            const SizedBox(
               width: 5,
             ),
             Text(
-              'В магазин',
+              isBack ? 'Назад' : 'В магазин',
               style: Style.montserrat12w400,
             ),
           ],

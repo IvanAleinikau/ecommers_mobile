@@ -30,7 +30,7 @@ class _VinylPageState extends State<VinylPage> {
         builder: (context, state) {
           if (state.isLoading) {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(color: Color(0xFF7D4848)),
             );
           } else {
             return GridView.builder(

@@ -1,8 +1,12 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:ecommers_mobile/app/pages/about_us_page.dart';
 import 'package:ecommers_mobile/app/pages/accessories/widgets/accessories_details.dart';
 import 'package:ecommers_mobile/app/pages/acoustics/widgets/acoustics_detailed.dart';
+import 'package:ecommers_mobile/app/pages/contacts_page.dart';
 import 'package:ecommers_mobile/app/pages/login_page.dart';
 import 'package:ecommers_mobile/app/pages/main_page.dart';
+import 'package:ecommers_mobile/app/pages/news/news_page.dart';
+import 'package:ecommers_mobile/app/pages/news/widget/news_detailed.dart';
 import 'package:ecommers_mobile/app/pages/register_page.dart';
 import 'package:ecommers_mobile/app/pages/vinyl/widgets/vinyl_detailed.dart';
 
@@ -15,16 +19,16 @@ import 'package:ecommers_mobile/app/pages/vinyl/widgets/vinyl_detailed.dart';
       name: 'LoginRoute',
       initial: true,
     ),
-    // AutoRoute(
-    //   path: '/contacts',
-    //   page: ContactsPage,
-    //   name: 'ContactsRoute',
-    // ),
-    // AutoRoute(
-    //   path: '/aboutUs',
-    //   page: AboutUsPage,
-    //   name: 'AboutUsRoute',
-    // ),
+    AutoRoute(
+      path: '/contacts',
+      page: ContactsPage,
+      name: 'ContactsRoute',
+    ),
+    AutoRoute(
+      path: '/aboutUs',
+      page: AboutUsPage,
+      name: 'AboutUsRoute',
+    ),
     AutoRoute(
       path: '/register',
       page: RegisterPage,
@@ -55,11 +59,11 @@ import 'package:ecommers_mobile/app/pages/vinyl/widgets/vinyl_detailed.dart';
     //   page: AccessoriesPage,
     //   name: 'AccessoriesRoute',
     // ),
-    // AutoRoute(
-    //   path: '/news',
-    //   page: NewsPage,
-    //   name: 'NewsRoute',
-    // ),
+    AutoRoute(
+      path: '/news',
+      page: NewsPage,
+      name: 'NewsRoute',
+    ),
     AutoRoute(
       path: '/vinyl_details',
       page: VinylDetailed,
@@ -75,11 +79,11 @@ import 'package:ecommers_mobile/app/pages/vinyl/widgets/vinyl_detailed.dart';
       page: AccessoriesDetailed,
       name: 'AccessoriesDetailedRoute',
     ),
-    // AutoRoute(
-    //   path: '/news_details',
-    //   page: NewsDetailed,
-    //   name: 'NewsDetailedRoute',
-    // ),
+    AutoRoute(
+      path: '/news_details',
+      page: NewsDetailed,
+      name: 'NewsDetailedRoute',
+    ),
   ],
 )
 class $AppRouter {}

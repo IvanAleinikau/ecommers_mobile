@@ -64,7 +64,7 @@ class _AppDrawerState extends State<AppDrawer> {
                           padding: const EdgeInsets.only(left: 20, top: 15),
                           child: Text(
                             '${_user?.email}',
-                            style: Style.montserrat18w400,
+                            style: Style.montserrat18w400.copyWith(color: Colors.white),
                           ),
                         )
                       ],
@@ -77,22 +77,30 @@ class _AppDrawerState extends State<AppDrawer> {
                       'Новости',
                       style: Style.montserrat20w400,
                     ),
-                    onTap: () {
-                      context.router.pop();
-                    },
+                    onTap: () => context.router.push(const NewsRoute()),
                   ),
                   Container(height: 1, color: Colors.grey.shade200),
                   ListTile(
-                    leading: Icon(CupertinoIcons.cart_fill, size: 25, color: Colors.grey.shade600),
+                    leading: Icon(CupertinoIcons.collections_solid,
+                        size: 25, color: Colors.grey.shade600),
                     title: const Text(
-                      'Корзина',
+                      'Каталог',
                       style: Style.montserrat20w400,
                     ),
-                    onTap: () {
-                      context.router.pop();
-                    },
+                    onTap: () => context.router.push(const MainRoute()),
                   ),
                   Container(height: 1, color: Colors.grey.shade200),
+                  // ListTile(
+                  //   leading: Icon(CupertinoIcons.cart_fill, size: 25, color: Colors.grey.shade600),
+                  //   title: const Text(
+                  //     'Корзина',
+                  //     style: Style.montserrat20w400,
+                  //   ),
+                  //   onTap: () {
+                  //     context.router.pop();
+                  //   },
+                  // ),
+                  // Container(height: 1, color: Colors.grey.shade200),
                   ListTile(
                     leading: Icon(CupertinoIcons.square_favorites_fill,
                         size: 25, color: Colors.grey.shade600),
@@ -100,9 +108,7 @@ class _AppDrawerState extends State<AppDrawer> {
                       'О нас',
                       style: Style.montserrat20w400,
                     ),
-                    onTap: () {
-                      context.router.pop();
-                    },
+                    onTap: () => context.router.push(const AboutUsRoute()),
                   ),
                   Container(height: 1, color: Colors.grey.shade200),
                   ListTile(
@@ -111,9 +117,7 @@ class _AppDrawerState extends State<AppDrawer> {
                       'Контакты',
                       style: Style.montserrat20w400,
                     ),
-                    onTap: () {
-                      context.router.pop();
-                    },
+                    onTap: () => context.router.push(const ContactsRoute()),
                   ),
                   Container(height: 1, color: Colors.grey.shade200),
                 ],
