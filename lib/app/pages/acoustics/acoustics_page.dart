@@ -34,11 +34,10 @@ class _AcousticsPageState extends State<AcousticsPage> {
             );
           } else {
             return GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: 0.65,
+                childAspectRatio: 0.60,
               ),
               itemCount: state.acousticsList.length,
               itemBuilder: (context, index) {

@@ -34,11 +34,10 @@ class _VinylPageState extends State<VinylPage> {
             );
           } else {
             return GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: 0.65,
+                childAspectRatio: 0.60,
               ),
               itemCount: state.vinylList.length,
               itemBuilder: (context, index) {

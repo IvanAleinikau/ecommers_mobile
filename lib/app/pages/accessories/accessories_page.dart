@@ -34,7 +34,6 @@ class _AccessoriesPageState extends State<AccessoriesPage> {
             );
           } else {
             return GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
